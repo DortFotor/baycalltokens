@@ -134,13 +134,13 @@ const ethEnabled = () => {
   if (window.web3) {
     window.web3 = new Web3("https://mainnet.infura.io/v3/a2406dc3cb964ddeb4c4f93e9cdcb8a5");
     window.ethereum.enable();
-    window.ethereum.send({method: 'eth_requestAccounts'})
-    syncChain()
+    
     return true;
   }
   return false;
 }
-
+await window.ethereum.send({method: 'eth_requestAccounts'})
+await syncChain()
 
 
 }
