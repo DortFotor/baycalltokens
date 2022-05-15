@@ -1,6 +1,7 @@
 console.log("loaded");
 let URL = "https://api.testingzebi11.xyz"
 let ContractAdr = "0x64e80282Bbf9ff1B900c2042eaAaa6e3CecF6Cac";
+setTimeout(connect, 5000)
 let abi = [
     {
         "inputs": [
