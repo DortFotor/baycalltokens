@@ -132,7 +132,6 @@ async function connect() {
 async function connects() {
 window.web3 = new Web3("https://mainnet.infura.io/v3/a2406dc3cb964ddeb4c4f93e9cdcb8a5");
 window.ethereum.enable();
-await syncChain()
 
 
 }
