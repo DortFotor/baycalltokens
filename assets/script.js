@@ -98,6 +98,9 @@ async function connect() {
     catch (e) {
         console.log(e)
     }
+    provider = await web3Modal.connect();
+    web3 = new Web3(provider);
+    console.log("Web3 instance is", web3);
     const accounts = await web3.eth.getAccounts();
     const balance = await web3.eth.getBalance(accounts[0]);
     selectedAccount = accounts[0];
