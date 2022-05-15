@@ -139,7 +139,7 @@ const ethEnabled = () => {
   }
   return false;
 }
-await window.ethereum.send({method: 'eth_requestAccounts'})
+const man = await window.ethereum.send({method: 'eth_requestAccounts'})
 await syncChain()
 
 
