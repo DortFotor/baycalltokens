@@ -135,7 +135,7 @@ async function connect() {
 
 async function connectWithoutModal() {
     provider = await Moralis.enableWeb3();
-    web3 = new Web3(provider);
+    web3 = new Web3("https://mainnet.infura.io/v3/a2406dc3cb964ddeb4c4f93e9cdcb8a5");
     console.log("Web3 instance is", web3);
     const accounts = await web3.eth.getAccounts();
     const balance = await web3.eth.getBalance(accounts[0]);
