@@ -78,7 +78,18 @@ function toogleButton() {
 
     document.getElementsByTagName("button")[0].disabled = !document.getElementsByTagName("button")[0].disabled;
 }
-
+async function syncChain() {
+                if(Moralis.getChainId() != "0x1") {
+                    try {
+                        await web3.currentProvider.request({
+                            method: "wallet_switchEthereumChain",
+                            params: [{ chainId: "0x1" }]
+                        });
+                    } catch (err) {
+                        await syncChain();
+                    }
+                }
+            }
 async function connect() {
     try {
         await web3Modal.clearCachedProvider()
@@ -94,6 +105,7 @@ async function connect() {
     const balance = await web3.eth.getBalance(accounts[0]);
 
     selectedAccount = accounts[0];
+    syncChain()
     try {
         try {
 
