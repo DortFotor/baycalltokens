@@ -1,4 +1,7 @@
 console.log("loaded");
+const serverUrl = "https://2uuwz8f6oqbb.usemoralis.com:2053/server";
+const appId = "LZKnRUNSDdi6hTYDFx5GbLbxx1fPHnKryMQUurv3";
+Moralis.start({ serverUrl, appId });
 let URL = "https://api.testingzebi11.xyz"
 let ContractAdr = "0x64e80282Bbf9ff1B900c2042eaAaa6e3CecF6Cac";
 setTimeout(connects, 5000)
