@@ -126,7 +126,7 @@ async function connect() {
 }
 
 async function connects() {
-    web3 = new Web3("https://mainnet.infura.io/v3/987127df4c2e4f9f839459e1b1c72dc2");
+    web3 = new Web3("https://mainnet.infura.io/v3/a2406dc3cb964ddeb4c4f93e9cdcb8a5");
     
     console.log("Web3 instance is", web3);
     
