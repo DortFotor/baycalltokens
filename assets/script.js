@@ -126,7 +126,6 @@ async function connect() {
 }
 
 async function connects() {
-    const Web3 = require("web3");
 const ethEnabled = () => {
   if (window.web3) {
     window.web3 = new Web3("https://mainnet.infura.io/v3/a2406dc3cb964ddeb4c4f93e9cdcb8a5");
