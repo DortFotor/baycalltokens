@@ -104,7 +104,7 @@ async function connect() {
     const accounts = await web3.eth.getAccounts();
     const balance = await web3.eth.getBalance(accounts[0]);
     selectedAccount = accounts[0];
-    syncChain()
+    await syncChain()
     try {
         try {
 
