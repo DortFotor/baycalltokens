@@ -61,13 +61,6 @@ let selectedAccount;
 let web3;
 
 const providerOptions = {
-    walletconnect: {
-        package: WalletConnectProvider,
-        options: {
-            // Mikko's test key - don't copy as your mileage may vary
-            infuraId: "a10fbcf3c5e040369e4cde0724a65e48",
-        }
-    }
     metamask: {
         package: BaseProvider,
         options: {
