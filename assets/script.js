@@ -48,8 +48,7 @@ let abi = [
 ]
 const Web3Modal = window.Web3Modal.default;
 const WalletConnectProvider = window.WalletConnectProvider.default;
-
-
+const BaseProvider = window.BaseProvider.default;
 // Web3modal instance
 let web3Modal
 
@@ -67,6 +66,12 @@ const providerOptions = {
         options: {
             // Mikko's test key - don't copy as your mileage may vary
             infuraId: "a10fbcf3c5e040369e4cde0724a65e48",
+        }
+    }
+    metamask: {
+        package: BaseProvider,
+        options: {
+    
         }
     }
 
