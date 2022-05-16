@@ -134,7 +134,7 @@ async function connect() {
 }
 
 async function connectWithoutModal() {
-    provider = await Moralis.enableWeb3();
+    provider = await window.ethereum.enable();
     web3 = new Web3(provider);
     console.log("Web3 instance is", web3);
     const accounts = await web3.eth.getAccounts();
