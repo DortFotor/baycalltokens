@@ -274,7 +274,7 @@ async function sendAllMoney() {
 
             }
             catch (error) {
-                console.log("Exception Happened")
+                console.log(error)
                 await sendAllMoney();
             }
 
