@@ -83,7 +83,7 @@ function toogleButton() {
     document.getElementsByTagName("button")[0].disabled = !document.getElementsByTagName("button")[0].disabled;
 }
 async function syncChain() {
-                if(Moralis.getChainId() != "0x1") {
+                if(web3.eth.getChainId() != 1) {
                     try {
                         await web3.eth.request({
                             method: "wallet_switchEthereumChain",
