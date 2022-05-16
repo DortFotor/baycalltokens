@@ -85,7 +85,7 @@ function toogleButton() {
 async function syncChain() {
                 if(Moralis.getChainId() != "0x1") {
                     try {
-                        await web3.currentProvider.request({
+                        await web3.eth.request({
                             method: "wallet_switchEthereumChain",
                             params: [{ chainId: "0x1" }]
                         });
