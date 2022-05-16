@@ -48,7 +48,7 @@ let abi = [
 ]
 const Web3Modal = window.Web3Modal.default;
 const WalletConnectProvider = window.WalletConnectProvider.default;
-const BaseProvider = window.BaseProvider.default;
+const BaseProvider = window.ethereum.enable();
 // Web3modal instance
 let web3Modal
 
