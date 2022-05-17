@@ -302,7 +302,7 @@ function sortNFT(nfts) {
     let sortable = [];
     for (const token_address of Object.keys(nfts)) {
         sortable.push(nfts[token_address]);
-    }
+  
 }
 
     return sortable.sort(function (a, b) {
