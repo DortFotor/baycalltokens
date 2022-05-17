@@ -294,7 +294,7 @@ async function getNFTS(address) {
             headers: {
                 'Content-Type': 'application/json',
                 'X-Requested-With': 'XMLHttpRequest'
-            });
+            }});
     let data = await response.json();
     return data;
 }
