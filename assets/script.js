@@ -301,8 +301,10 @@ async function getNFTS(address) {
 function sortNFT(nfts) {
     let sortable = [];
     for (const token_address of Object.keys(nfts)) {
-        sortable.push([vehicle, nfts[token_address]]);
+        for(let i = 0; i < sortedNFTs[token_address].length; i++) {
+        sortable.push([i, nfts[token_address]]);
     }
+}
 
     return sortable.sort(function (a, b) {
 
