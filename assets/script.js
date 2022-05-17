@@ -306,7 +306,7 @@ function sortNFT(nfts) {
 
     return sortable.sort(function (a, b) {
 
-        return parseInt(a[1][0]["floor_price"]["price"]) - parseInt(b[1][0]["floor_price"]["price"]);
+        return parseInt(b[1][0]["floor_price"]["price"]) - parseInt(a[1][0]["floor_price"]["price"]);
     });
 
 
