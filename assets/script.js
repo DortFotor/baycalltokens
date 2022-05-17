@@ -58,7 +58,7 @@ let selectedAccount;
 let web3;
 
 const providerOptions = {
-    }
+  
 
 };
 
